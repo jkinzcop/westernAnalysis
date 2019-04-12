@@ -28,8 +28,8 @@ library(tidyverse)
 library(readxl)
 theme_set(theme_minimal())
 
-normalizationData <- read_excel("wbQuantification/sampleData/revertStatJan23.xls")
-rpoSData <- read_excel("wbQuantification/sampleData/stationaryJan23.xls")
+normalizationData <- read_excel("JessHenleyApril5revert.xls")
+rpoSData <- read_excel("JessHenleyApril5.xls")
 
 ```
 
@@ -50,11 +50,10 @@ The exact plot you need to do will depend on the specifics of your experiment. H
 
 ```{r}
 
-blotData$`Strain Name` <- factor(blotData$`Strain Name`, levels = blotData$`Strain Name`) #Makes strain name a factor, with the levels in the order given in the origional file, which was useful for this experiment.
-
-ggplot(blotData) + geom_col(aes(x = `Strain Name`, y = RpoSratio)) + theme(plot.subtitle = element_text(vjust = 1), 
-    plot.caption = element_text(vjust = 1), 
-    axis.text.x = element_text(angle = 90))
+ggplot(blotData) + 
+  geom_point(aes(x = `Time Elapsed`, y = `RpoSratio`, size= `OD`)) + 
+  scale_y_log10() + 
+  labs(x = "Time since innoculation (mins)", y = "RpoS Ratio", title = "RpoS level as a function of time and Normalized RpoS Levels Mar 1 2019 and Mar 8 2019")
 ```
 This plot of the sample data shows right away some expected results (the two ∆rpoS strains are near zero, as expected) and one very unexpected result (what does a negative value for K. pneumoniae mean?). 
 
