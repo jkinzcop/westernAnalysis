@@ -31,8 +31,8 @@ library(tidyverse)
 library(readxl)
 theme_set(theme_minimal())
 
-normalizationData <- read_excel("blot2revert.xls")
-rpoSData <- read_excel("blot2.xls")
+normalizationData <- read_excel("4.26.blot2revert.xls")
+rpoSData <- read_excel("4.26.blot2.xls")
 
 ```
 
